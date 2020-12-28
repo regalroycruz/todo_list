@@ -1,0 +1,16 @@
+{%extends 'todo_app/base.html' %}
+
+{% block content %}
+<h1>Completed</h1>
+<ul>
+    {% for i in todo %}
+    <li>
+        <a href = "{% url 'view_to_do_alias' i.id %}">
+        {% if i.important %}<b>{%endif%}{{ i.title }}{% if i.important %}</b>{%endif%}
+        {% if i.memo %} - {{ i.memo }} {% endif %}
+        {{ i.datecompleted }}
+        </a>
+    </li>
+    {%endfor%}
+</ul>
+{%endblock%}

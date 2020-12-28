@@ -1,0 +1,23 @@
+{% extends 'todo_app/base.html' %}
+
+{%block content%}
+
+<h1>Current to do list</h1>
+
+<ul>
+    {% for i in todo %}
+    <li>
+        <a href = "{% url 'view_to_do_alias' i.id %}">
+        {% if i.important %}<b>{%endif%}{{ i.title }}{% if i.important %}</b>{%endif%}
+        {% if i.memo %} - {{ i.memo }} {% endif %}
+        </a>
+    </li>
+    {%endfor%}
+</ul>
+
+<form method="POST" action="{% url 'show_completed' %}">
+    {% csrf_token %}
+<button type="submit">Show Completed</button>
+</form>
+
+{%endblock%}
